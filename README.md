@@ -1,143 +1,101 @@
 # 2D SideSrolling
 
-	ห
+# Task Progress (Complete)
+### ระบบที่ 1: ระบบ Time Hop
+
+#### วัตถุประสงค์:
+
+สร้างกลไก **Time Hop** ที่จัดการเวลาในเกม โดยจะหมุนเวียนผ่านสามช่วงเวลาที่แตกต่างกันของวัน (เช้า, บ่าย, เย็น) และติดตามวันในรูปแบบสัปดาห์ ระบบนี้จะสามารถติดตามวันได้อย่างไม่สิ้นสุดพร้อมกับการวนสัปดาห์ตั้งแต่วันจันทร์ถึงวันอาทิตย์
+### รายละเอียดงานที่ทำเสร็จสิ้น:
+
+1.  **การแบ่งช่วงเวลา:**
+    -   ระยะเวลา 1 วันภายในเกมจะมี 24 นาที แบ่งได้ช่วงละ 8 นาที
+    -   หนึ่งวันในเกมจะถูกแบ่งเป็น 3 ช่วงเวลา: **เช้า**, **บ่าย**, และ **เย็น**
+    -   เวลาจะเดินหน้าในลำดับดังนี้: เช้า → บ่าย → เย็น → วันถัดไป (เช้า)
+2.  **การหมุนเวียนรายสัปดาห์:**
+   
+    -   วันจะหมุนเวียนในรูปแบบสัปดาห์: **จันทร์ → อาทิตย์**
+    -   วันภายในเกมจะถูกนับแบบไม่มีที่สิ้นสุด : วัน 0 → วัน 1 → วัน 100 ขึ้นไป
+3.  **การเปลี่ยนช่วงเวลาโดยการมีปฏิสัมพันธ์ (Time Hop Triggering):**
+    
+    -   การเปลี่ยนช่วงเวลาโดยการโต้ตอบกับ collider ในเกม โดยการเดินไปชนกับ GameObject ทางด้านซ้ายมือของเกมที่ถูกกำหนดไว้
+4.  **การเปลี่ยนแปลงสภาพแวดล้อมเมื่อเปลี่ยนช่วงเวลา:**
+	   -   การเปลี่ยนช่วงเวลาภายในเกมจะส่งผลต่อสิ่งแวดล้อมโดยรอบ 
+	   - ช่วงเช้า จะมีการเปลี่ยนแปลงเรื่องของแสงที่สว่างขึ้น , มี effect sun ray เกิดขึ้น
+	   - ช่วงหลังเที่ยง จะมีการเปลี่ยนแปลงของแสงสว่างมีจะออกไปโทนเข้มมากขึ้น , มีละอองกระจายฟุ้งอยู่ทั่วไป
+	   - ช่วงเย็น จะมีการเปลี่ยนแปลงของแสงที่จะมืดลง , มีแสงของหิ่งห้อย และแสงระยิบระยับกระจายอยู่ทั่วไป
+----------
+### ระบบที่ 2: ระบบ Inventory
+
+#### วัตถุประสงค์:
+
+สร้าง **ระบบ Inventory** ที่ช่วยให้ผู้เล่นสามารถเก็บ สะสม จัดเก็บ และใช้งานไอเทมต่าง ๆ ในระหว่างการเล่นเกม ระบบนี้จะมีแถบ Inventory Bar สำหรับการเข้าถึงไอเทมสำคัญได้อย่างรวดเร็ว และจะจัดการกับการซ้อนของไอเทมและข้อจำกัดต่าง ๆ
+
+### รายละเอียดงานที่ทำเสร็จสิ้น:
+
+1.  **การจัดการ Inventory:**
+    
+    -   ผู้เล่นสามารถเพิ่ม, ลบ และจัดระเบียบไอเทมภายใน Inventory ได้
+    - ภายในเกมผู้เล่นสามารถคัดแยกประเภทของไอเทมต่างๆได้ โดยจะมีปุ่มคัดแยกประเภททั้งหมด 5 ประเภท ได้แก่ 
+    1. Show All - เป็นปุ่มที่จะแสดงทุกประเภทของไอเทมที่ผู้เล่นมี
+    2. Resources - ปุ่มที่ไว้แสดงเฉพาะไอเทมที่เป็นประเภททรัพยากรณ์
+    3. Tools - ปุ่มที่จะแสดงไอเทมประเภทเครื่องมือ เครื่องสวมใส่
+    4. Crafted Objects - ปุ่มที่แสดงเฉพาะไอเทมคราฟต์
+    5. Seeds - ปุ่มที่จะแสดงเฉพาะไอเทมประเภทเมล็ดพันธุ์
+    - สามารถ Remove ไอเทมที่ไม่ต้องการได้
+    - สามารถเลือกสวมใส่ไอเทมที่ต้องการ
+2.  **แถบ Inventory:**
+    
+    -   จะมี **Inventory Bar** แสดงที่ด้านล่างของหน้าจอสำหรับการเข้าถึงไอเทมที่สำคัญได้อย่างรวดเร็ว
+    -   ไอเทมสามารถติดตั้ง, ใช้งาน หรือวางจาก Inventory Bar ได้โดยตรงโดยการกดที่ช่องไอเทม ถ้าหากเป็นไอเทมประเภทสวมใส่จะมีปุ่ม equip แสดงขึ้นมา
+3.  **การซ้อนและข้อจำกัดของไอเทม:**
+    
+    -   ไอเทมภายในเกม จะถูกแยกเป็น 2 ประเภทหลักๆ ก็คือ 
+    1. ไอเทมประเภทที่สามารถซ้อนทับหรือ stack ได้ ภายใต้เงื่อนไขคือต้องเป็นไอเทมชิ้นเดียวกันเช่น ไอเทมประเภทวัตถุดิบ , ประเภททรัพยากรณ์ต่างๆ เป็นต้น
+    2. ไอเทมประเภทที่ไม่สามารถซ้อนทับหรือ stack ได้ เช่น ไอเทมประเภทที่สามารถสวใส่ได้ ไอเทมประเภทนี้จะถูกแยกออกมาเป็นชิ้นๆ ไม่สามารถรวมหรือซ้อมทับกันได้ 
+    - จำนวนการซ้อนทับสูงสุดจะถูกกำหนดภายในเกมที่เป็น ItemData : Scriptable objects เพื่อง่ายต่อการจัดการไอเทม เมื่อต้องการเปลี่ยนค่าภายหลัง
+----------
+### ระบบที่ 3: ระบบการต่อสู้ (Combat System)
+
+#### วัตถุประสงค์:
+
+พัฒนาระบบการต่อสู้ (Combat System) ที่ช่วยให้ผู้เล่นสามารถต่อสู้โดยใช้ไม้กายสิทธิ์ (Wand) ซึ่งจะถูกผสมผสานเข้ากับ AI ศัตรู (Slime) เพื่อสร้างพฤติกรรมการต่อสู้ขั้นพื้นฐาน
+
+### รายละเอียดงานที่ทำเสร็จสิ้น:
+
+1.  **กลไกการต่อสู้พื้นฐาน (Basic Combat Mechanics):**
+    
+    -   ผู้เล่นสามารถใช้ไม้กายสิทธิ์ (Wand) เพื่อยิงกระสุน (Projectile) เป็นเส้นตรง 
+    -   ไม้กายสิทธิ์สามารถโจมตีระยะไกลได้ในสภาพแวดล้อมแบบ 2D side-scrolling
+    - ตัวละครหลักมี Animation Idle , Run , Attack , Death , Jump 
+    - ผู้เล่นสามารถเคลื่อนที่ได้อย่างอิสระ โดยสามารถควบคุมได้โดยใช้ลูกศรทิศทางของคีย์บอร์ด
+    - ตัวละครจะทำการโจมตีเป็นวิถีตรงแบบ Projectile เมื่อกด "z" 
+    - ผู้เล่นจะไม่สามารถโจมตีได้ในขณะวิ่ง 
+    - เมื่อผู้เล่นโจมตีใส่ Slime จะมีผลทำให้ Slime กระเด็นถอยหลังเล็กน้อย
+2.  **AI ศัตรู (Slime):**
+    
+    -   ศัตรูประเภท Slime ซึ่งจะติดตามผู้เล่นและโจมตีเมื่ออยู่ในระยะที่กำหนด
+    -   หากผู้เล่นพ้นระยะในช่วงระยะเวลานึง Slime จะกลับไปยังจุดเดิม
+    - เมื่อผู้เล่นอยู่ในระยะโจมตี Slime จะโจมตีผู้เล่นซึ่งมีผลทำให้ผู้เล่นกระเด็นถอยหลังเล็กน้อย
 
 
-# Files
+# Task Progress (In progress)
+### ระบบที่ 1: ระบบ Inventory
 
-StackEdit stores your files in your browser, which means all your files are automatically saved locally and are accessible **offline!**
+### รายละเอียดงานที่ยังไม่เสร็จสิ้น:
+-	ระบบการเลือกใช้ไอเทมประเภท Useable เช่น ไอเทมประเภทยา , ของกิน , กดใช้เพื่อให้เกิดผลบางอย่าง 
+-	เนื่องจากต้องการที่เชื่อมต่อกับระบบ HP หรือ AP เมื่อกดใช้ไอเทมจะเพิ่มปริมาณ HP หรือสิ่งที่ต้องการดังนั้นจึงคิดว่าจะกลับมาทำหลังจากที่ทำระบบ HP , AP เสร็จเรียบร้อย
+------
+### ระบบที่ 2: ระบบการต่อสู้ (Combat System)
 
-## Create files and folders
+### รายละเอียดงานที่ยังไม่เสร็จสิ้น:
 
-The file explorer is accessible using the button in left corner of the navigation bar. You can create a new file by clicking the **New file** button in the file explorer. You can also create folders by clicking the **New folder** button.
+1.  **กลไกการต่อสู้พื้นฐาน (Basic Combat Mechanics):**
+- ปัจจุบันตัวละครหลักยังไม่มีแถบพลังชีวิต หรือ HP และแถบพลังงาน หรือ AP 
+- ขาดระบบการคำนวณค่าความเสียหายต่อการโจมตี  1 ครั้งของตัวละคร
+- ระบบรีเซตพลังชีวิตเมื่อไม่อยู่ในการต่อสู้หรือเสียชีวิต
 
-## Switch to another file
-
-All your files and folders are presented as a tree in the file explorer. You can switch from one to another by clicking a file in the tree.
-
-## Rename a file
-
-You can rename the current file by clicking the file name in the navigation bar or by clicking the **Rename** button in the file explorer.
-
-## Delete a file
-
-You can delete the current file by clicking the **Remove** button in the file explorer. The file will be moved into the **Trash** folder and automatically deleted after 7 days of inactivity.
-
-## Export a file
-
-You can export the current file by clicking **Export to disk** in the menu. You can choose to export the file as plain Markdown, as HTML using a Handlebars template or as a PDF.
-
-
-# Synchronization
-
-Synchronization is one of the biggest features of StackEdit. It enables you to synchronize any file in your workspace with other files stored in your **Google Drive**, your **Dropbox** and your **GitHub** accounts. This allows you to keep writing on other devices, collaborate with people you share the file with, integrate easily into your workflow... The synchronization mechanism takes place every minute in the background, downloading, merging, and uploading file modifications.
-
-There are two types of synchronization and they can complement each other:
-
-- The workspace synchronization will sync all your files, folders and settings automatically. This will allow you to fetch your workspace on any other device.
-	> To start syncing your workspace, just sign in with Google in the menu.
-
-- The file synchronization will keep one file of the workspace synced with one or multiple files in **Google Drive**, **Dropbox** or **GitHub**.
-	> Before starting to sync files, you must link an account in the **Synchronize** sub-menu.
-
-## Open a file
-
-You can open a file from **Google Drive**, **Dropbox** or **GitHub** by opening the **Synchronize** sub-menu and clicking **Open from**. Once opened in the workspace, any modification in the file will be automatically synced.
-
-## Save a file
-
-You can save any file of the workspace to **Google Drive**, **Dropbox** or **GitHub** by opening the **Synchronize** sub-menu and clicking **Save on**. Even if a file in the workspace is already synced, you can save it to another location. StackEdit can sync one file with multiple locations and accounts.
-
-## Synchronize a file
-
-Once your file is linked to a synchronized location, StackEdit will periodically synchronize it by downloading/uploading any modification. A merge will be performed if necessary and conflicts will be resolved.
-
-If you just have modified your file and you want to force syncing, click the **Synchronize now** button in the navigation bar.
-
-> **Note:** The **Synchronize now** button is disabled if you have no file to synchronize.
-
-## Manage file synchronization
-
-Since one file can be synced with multiple locations, you can list and manage synchronized locations by clicking **File synchronization** in the **Synchronize** sub-menu. This allows you to list and remove synchronized locations that are linked to your file.
-
-
-# Publication
-
-Publishing in StackEdit makes it simple for you to publish online your files. Once you're happy with a file, you can publish it to different hosting platforms like **Blogger**, **Dropbox**, **Gist**, **GitHub**, **Google Drive**, **WordPress** and **Zendesk**. With [Handlebars templates](http://handlebarsjs.com/), you have full control over what you export.
-
-> Before starting to publish, you must link an account in the **Publish** sub-menu.
-
-## Publish a File
-
-You can publish your file by opening the **Publish** sub-menu and by clicking **Publish to**. For some locations, you can choose between the following formats:
-
-- Markdown: publish the Markdown text on a website that can interpret it (**GitHub** for instance),
-- HTML: publish the file converted to HTML via a Handlebars template (on a blog for example).
-
-## Update a publication
-
-After publishing, StackEdit keeps your file linked to that publication which makes it easy for you to re-publish it. Once you have modified your file and you want to update your publication, click on the **Publish now** button in the navigation bar.
-
-> **Note:** The **Publish now** button is disabled if your file has not been published yet.
-
-## Manage file publication
-
-Since one file can be published to multiple locations, you can list and manage publish locations by clicking **File publication** in the **Publish** sub-menu. This allows you to list and remove publication locations that are linked to your file.
-
-
-# Markdown extensions
-
-StackEdit extends the standard Markdown syntax by adding extra **Markdown extensions**, providing you with some nice features.
-
-> **ProTip:** You can disable any **Markdown extension** in the **File properties** dialog.
-
-
-## SmartyPants
-
-SmartyPants converts ASCII punctuation characters into "smart" typographic punctuation HTML entities. For example:
-
-|                |ASCII                          |HTML                         |
-|----------------|-------------------------------|-----------------------------|
-|Single backticks|`'Isn't this fun?'`            |'Isn't this fun?'            |
-|Quotes          |`"Isn't this fun?"`            |"Isn't this fun?"            |
-|Dashes          |`-- is en-dash, --- is em-dash`|-- is en-dash, --- is em-dash|
-
-
-## KaTeX
-
-You can render LaTeX mathematical expressions using [KaTeX](https://khan.github.io/KaTeX/):
-
-The *Gamma function* satisfying $\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$ is via the Euler integral
-
-$$
-\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.
-$$
-
-> You can find more information about **LaTeX** mathematical expressions [here](http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference).
-
-
-## UML diagrams
-
-You can render UML diagrams using [Mermaid](https://mermaidjs.github.io/). For example, this will produce a sequence diagram:
-
-```mermaid
-sequenceDiagram
-Alice ->> Bob: Hello Bob, how are you?
-Bob-->>John: How about you John?
-Bob--x Alice: I am good thanks!
-Bob-x John: I am good thanks!
-Note right of John: Bob thinks a long<br/>long time, so long<br/>that the text does<br/>not fit on a row.
-
-Bob-->Alice: Checking with John...
-Alice->John: Yes... John, how are you?
-```
-
-And this will produce a flow chart:
-
-```mermaid
-graph LR
-A[Square Rect] -- Link text --> B((Circle))
-A --> C(Round Rect)
-B --> D{Rhombus}
-C --> D
-```
+2.  **AI ศัตรู (Slime):**
+- ระบบ HP ของ Slime
+- ระบบคำนวณค่าความเสียหายต่อการโจมตี 1 ครั้ง
+- ระบบการแตกตัวของ Slime เมื่อกำจัด ตัว Slime จะระเบิดออกและจะมี Mini Slime เกิดขึ้นมาแทน
